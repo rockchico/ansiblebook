@@ -1,11 +1,11 @@
 ---
-hosts: all
-become: true
-tasks:
-  - name: Ensure .ssh directory in user skeleton
-    file:
-      path: /etc/skel/.ssh
-      mode: '0700'
-      owner: root
-      group: root
-      state: directory
+- hosts: all
+  become: true
+  tasks:
+    - name: Ensure .ssh directory in user skeleton
+      file:
+        path: /etc/skel/.ssh
+        mode: '0700'
+        owner: root
+        group: root
+        state: directory
