@@ -11,6 +11,9 @@
         path: /etc/ssh/sshd_config
       register: result
 
+    - debug:
+        var: result.stat.atime
+
     - name: Display result.stat detail
       debug: var=result['stat'][stat_key]
 ...

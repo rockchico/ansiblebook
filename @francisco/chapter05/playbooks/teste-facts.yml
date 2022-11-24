@@ -1,0 +1,27 @@
+---
+- name: Show return value of stat module
+  hosts: ubuntu
+  gather_facts: true
+  become: true
+  vars:
+    stat_key: mode
+
+  tasks:
+
+    # - name: DEbug facts
+    #   debug:
+    #     var: ansible_facts
+
+    # - name: Display result.stat detail
+    #   debug:
+    #     var: ansible_facts['processor']
+
+    - name: Debug service facts
+      service_facts:
+      register: teste_svc
+
+    - debug:
+        var: teste_svc
+
+
+...
