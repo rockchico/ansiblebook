@@ -1,0 +1,41 @@
+
+PLAY [Teste hostvars] **********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [debian]
+ok: [ubuntu]
+fatal: [fedora]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 192.168.56.11 port 22: No route to host", "unreachable": true}
+
+TASK [Debug hostvars Ubuntu] ***************************************************
+ok: [ubuntu] => {
+    "hostvars['ubuntu']['ansible_all_ipv4_addresses']": [
+        "10.0.2.15",
+        "192.168.56.10"
+    ]
+}
+ok: [debian] => {
+    "hostvars['ubuntu']['ansible_all_ipv4_addresses']": [
+        "10.0.2.15",
+        "192.168.56.10"
+    ]
+}
+
+TASK [Debug hostvars Debian] ***************************************************
+ok: [ubuntu] => {
+    "hostvars['debian']['ansible_all_ipv4_addresses']": [
+        "192.168.56.12",
+        "10.0.2.15"
+    ]
+}
+ok: [debian] => {
+    "hostvars['debian']['ansible_all_ipv4_addresses']": [
+        "192.168.56.12",
+        "10.0.2.15"
+    ]
+}
+
+PLAY RECAP *********************************************************************
+debian                     : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+fedora                     : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+ubuntu                     : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

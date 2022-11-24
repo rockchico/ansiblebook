@@ -1,0 +1,37 @@
+---
+- name: Teste hostvars
+  hosts: all
+  become: true
+  gather_facts: true
+
+  tasks:
+
+    # - name: Debug hostvars
+    #   debug:
+    #     var: hostvars
+
+    - name: Debug hostvars Ubuntu
+      debug:
+        var: hostvars['ubuntu']['ansible_all_ipv4_addresses']
+
+    - name: Debug hostvars Debian
+      debug:
+        var: hostvars['debian']['ansible_all_ipv4_addresses']
+
+
+    # - name: Debug inventory_hostname
+    #   debug:
+    #     var: inventory_hostname
+
+
+    # - name: Debug group_names
+    #   debug:
+    #     var: group_names    
+
+    # - name: Debug groups
+    #   debug:
+    #     var: groups
+
+    # - name: Debug ansible_version
+    #   debug:
+    #     var: ansible_version
