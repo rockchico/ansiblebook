@@ -1,0 +1,27 @@
+---
+
+- name: Teste
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Create a Vagrantfile
+      debug:
+        msg: '{{ minha_var }} , {{ minha_var_host_vars }}' 
+
+- name: Group hosts by distribution
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Create groups based on distro
+      group_by:
+        key: "{{ ansible_facts.distribution }}"
+
+- name: Do something to Ubuntu hosts
+  hosts: Ubuntu
+  become: true
+  tasks:
+  - name: Install cowsay
+    apt:
+      update_cache: true
+      name:
+        - cowsay
