@@ -1,0 +1,5 @@
+---
+# tasks file for teste
+- name: Diz Hello
+  debug:
+    msg: Oi, tudo bom?
