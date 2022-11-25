@@ -9,3 +9,30 @@
         owner: root
         group: root
         state: directory
+      tags: teste
+
+
+    - name: Stat /boot/grub
+      stat:
+        path: /boot/grub
+      register: st
+
+    - name: Debug ST
+      debug:
+        var: st
+
+    - name: Assert that /boot/grub is a directory
+      assert:
+        that: st.stat.isdir
+
+
+    - name: Copy the binary files into /tmp
+      copy:
+        src: "{{ item }}"
+        dest: /tmp
+        owner: root
+        group: root
+        mode: 0755
+      with_items:
+        - 123.txt
+      tags: teste
