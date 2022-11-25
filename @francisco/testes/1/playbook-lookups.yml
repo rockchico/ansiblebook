@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: true
+
+  # utiliza o resultado do comando definido em pubkey_cmd, que gera uma chave pública, e adiciona aos autorized_keys
+  tasks:
+    - name: Add default public key for vagrant user
+      authorized_key:
+        user: vagrant
+        key: "{{ lookup('pipe', pubkey_cmd ) }}"
+      vars:
+        pubkey_cmd: 'cat ~/.ssh/id_ed25519.pub '
+        #pubkey_cmd: 'ssh-keygen -y -f ~/.vagrant.d/insecure_private_key'
+    
