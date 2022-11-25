@@ -3,3 +3,15 @@
 - name: Diz Hello
   debug:
     msg: Oi, tudo bom?
+
+# vai procurar primeiro pelo arquiv 123.txt na pasta role/files e depois na pasta files
+# neste exemplo será copiado o arquivo files/123.txt, pois não existe o arquivo role/files/123.txt
+- name: Copy the binary files into /tmp
+  copy:
+    src: "{{ item }}"
+    dest: /tmp
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - 123.txt

@@ -1,0 +1,20 @@
+---
+- hosts: all
+  become: true
+
+  roles:
+    - teste
+
+  # tasks executadas antes das roles
+  pre_tasks:
+    - name: Executado antes das roles
+      debug:
+        msg: Antes das Roles
+
+    # tasks executadas antes das roles
+  post_tasks:
+    - name: Executado depois das roles
+      debug:
+        msg: Depois das Roles
+
+    
