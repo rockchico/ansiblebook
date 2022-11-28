@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: true
+
+
+  tasks:
+
+    - name: Ls /boot/grub
+      shell: |
+        cd /boot/grub && ls -lah
+      register: ls_grub
+
+    - name: Debug Ls
+      debug:
+        var: ls_grub

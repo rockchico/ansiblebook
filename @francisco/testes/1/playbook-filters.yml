@@ -1,0 +1,46 @@
+---
+- hosts: all
+  become: true
+
+  vars:
+    minha_var123: 'Oi, tudo bom?'
+    homepage: /usr/share/nginx/html/index.html
+    teste: /usr/share/nginx/html/
+
+  tasks:
+
+    # utilizado o filtro default
+    - name: Debug 
+      debug:
+        msg: "mensagem: {{ minha_var | default('sem mensagem') }}"
+
+
+    # filtro failed
+    # roda a task e exibe a saída, mesmo se a task falhar
+    # se a tarefa falhar, de fato, faz com que o Absible falher tanmbé utilizando failed_when
+    # - name: Run myprog
+    #   command: /opt/myprog
+    #   register: result
+    #   ignore_errors: true
+      
+    # - debug: var=result
+    
+    # - debug:
+    #     msg: "Stop running the playbook if myprog failed"
+    #   failed_when: result|failed
+
+
+    # basename
+    # extrai o nome do arquivo
+    - name: Cria o diretório nginx
+      ansible.builtin.file:
+        path: '{{ teste }}'
+        state: directory
+        mode: '0755'
+
+
+
+    - name: Copy home page
+      copy:
+        src: "files/{{ homepage | basename }}"
+        dest: "{{ homepage }}"
