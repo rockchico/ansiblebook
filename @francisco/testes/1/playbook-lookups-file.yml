@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: true
+
+  vars:
+    myuser: francisco
+  
+  tasks:
+    
+    - name: Exemplo file
+      set_fact: conteudo_arquivo="{{ lookup('file','123.txt') }}"
+
+    - name: Debug
+      debug:
+        var: conteudo_arquivo
+    
