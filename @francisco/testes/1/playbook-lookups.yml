@@ -1,0 +1,36 @@
+---
+- hosts: all
+  become: true
+
+  vars:
+    myuser: francisco
+  
+  tasks:
+    
+    # utiliza o resultado do comando definido em pubkey_cmd, que gera uma chave pública, e adiciona aos autorized_keys
+    - name: Add default public key for vagrant user
+      authorized_key:
+        user: vagrant
+        key: "{{ lookup('pipe', pubkey_cmd ) }}"
+      vars:
+        pubkey_cmd: 'cat ~/.ssh/id_ed25519.pub '
+        #pubkey_cmd: 'ssh-keygen -y -f ~/.vagrant.d/insecure_private_key'
+
+
+
+
+    - name: raw result of running date command"
+      debug: msg="{{ lookup('pipe','date') }}"
+
+    - name: Always use quote filter to make sure your variables are safe to use with shell
+      debug: msg="{{ lookup('pipe','getent passwd francisco' ) }}"
+
+
+    # salva o resultado em uma variável
+    - name: Salva data como variável
+      set_fact: minha_data="{{ lookup('pipe','date') }}"
+
+    - name: Debug da minha_data
+      debug:
+        var: minha_data
+    
