@@ -20,6 +20,7 @@ Vagrant.configure("2") do |config|
     db.vm.provider "virtualbox" do |vb|
       vb.name = "db"
       # Use VBoxManage to customize the VM. For example to change memory:
+      vb.customize ["modifyvm", :id, "--cpus", 2]
       vb.customize ["modifyvm", :id, "--memory", "1024"]
     end
   end
@@ -34,15 +35,16 @@ Vagrant.configure("2") do |config|
     web.vm.provider "virtualbox" do |vb|
       vb.name = "web"
       # Use VBoxManage to customize the VM. For example to change memory:
+      vb.customize ["modifyvm", :id, "--cpus", 2]
       vb.customize ["modifyvm", :id, "--memory", "1024"]
     end
 
-    web.vm.provision "ansible" do |ansible|
-      ansible.limit = 'all'
-      ansible.playbook = "playbook.yml"
-    ansible.verbose = "vvv"
-    ansible.compatibility_mode = "2.0"
-    end
+    # web.vm.provision "ansible" do |ansible|
+    #   ansible.limit = 'all'
+    #   ansible.playbook = "playbook.yml"
+    # ansible.verbose = "vvv"
+    # ansible.compatibility_mode = "2.0"
+    # end
 
   end
 
