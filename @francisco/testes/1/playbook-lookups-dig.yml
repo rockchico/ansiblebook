@@ -1,0 +1,24 @@
+---
+- hosts: all
+  become: true
+
+  vars:
+    myuser: francisco
+  
+  tasks:
+    
+    # https://docs.ansible.com/ansible/latest/collections/community/general/dig_lookup.html
+
+    - name: Look up TXT record
+      debug:
+        msg: "{{ lookup('community.general.dig', 'ansiblebook.com', 'qtype=TXT') }}"
+
+    - name: use in a loop MX
+      ansible.builtin.debug:
+        msg: "MX record for gmail.com {{ item }}"
+      with_items: "{{ lookup('community.general.dig', 'gmail.com./MX', wantlist=true) }}"
+
+    - name: use in a loop A
+      ansible.builtin.debug:
+        msg: "A record for gmail.com {{ item }}"
+      with_items: "{{ lookup('community.general.dig', 'gmail.com./A', wantlist=true) }}"

@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+
+  vars:
+    myuser: francisco
+  
+  tasks:
+    
+    - name: Output message from template
+      debug:
+        msg: "{{ lookup('template', 'message.j2') }}"

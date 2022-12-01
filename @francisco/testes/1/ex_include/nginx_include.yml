@@ -1,0 +1,10 @@
+- name: Install nginx
+  package:
+    name: nginx
+    update_cache: yes
+
+- name: Ensure nginx is running
+  service:
+    name: nginx
+    state: started
+    enabled: yes

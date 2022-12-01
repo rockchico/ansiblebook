@@ -1,0 +1,38 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+    
+    - name: Add users
+      become: true
+      user:
+        name: "{{ meudeusdoceu.name }}"
+      with_items:
+      - { name: gil }
+      - { name: sarina }
+      - { name: leanne }
+      loop_control:
+        loop_var: meudeusdoceu # configura o nome da variável de item
+
+
+
+
+    - name: Run a set of tasks in one loop
+      include_tasks: vhosts.yml
+      with_items:
+        - { domain: www1.example.com }
+        - { domain: www2.example.com }
+        - { domain: www3.example.com }
+      loop_control:
+        loop_var: vhost
+
+    - name: Create nginx directories
+      file:
+        path: "/var/www/html/{{ vhost.domain }}/{{ item }}"
+        state: directory
+      with_items:
+        - logs
+        - public_http
+        - public_https
+        - includes

@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: true
+
+  vars:
+    myuser: francisco
+  
+  tasks:
+    
+    # https://github.com/ansible/ansible/blob/devel/lib/ansible/plugins/lookup/env.py
+
+    - name: Teste do lookup teste
+      debug:
+        msg: "{{ lookup('teste', 'ansiblebook.com', 'qtype=TXT') }}"

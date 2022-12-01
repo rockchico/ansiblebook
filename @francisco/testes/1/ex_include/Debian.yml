@@ -1,0 +1,3 @@
+- name: Install nginx
+  debug:
+    msg: "Opa, fez o include do {{ ansible_os_family }}"

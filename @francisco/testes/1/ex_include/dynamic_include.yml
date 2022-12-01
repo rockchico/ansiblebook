@@ -1,0 +1,13 @@
+---
+  - name: Meu Play
+    hosts: all
+    tasks:
+    
+    - block:
+
+      - debug:
+          var: ansible_os_family
+
+      - name: Include teste
+        include_tasks: "{{ ansible_os_family }}.yml"
+      become: true
