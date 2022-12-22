@@ -10,7 +10,7 @@
         state: present
         update_cache: yes
 
-    - name: Install php
+    - name: Install Banana
       include_role:
         name: banana
         tasks_from: install
@@ -20,7 +20,7 @@
         src: message.j2
         dest: /tmp/message
 
-    - name: Configure php
+    - name: Configure Banana
       include_role:
         name: banana
         tasks_from: configure

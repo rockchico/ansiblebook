@@ -1,0 +1,16 @@
+
+---
+- hosts: all
+  become: true
+
+  tasks:
+
+    - name: Download goss binary
+      delegate_to: localhost
+      connection: local
+      become: false
+      get_url:
+        url: "https://oreil.ly/RuRsL"
+        dest: "~/Downloads/goss"
+        mode: '0755'
+      ignore_errors: true

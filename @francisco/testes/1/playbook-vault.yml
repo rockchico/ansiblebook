@@ -1,0 +1,29 @@
+
+#
+# $ vim group_vars/all/vault.yml
+# password: laranja
+
+# $ ansible-vault encrypt group_vars/all/vault.yml
+
+# $ ansible-playbook playbook-vault.yml --ask-vault-pass
+
+
+---
+- hosts: all
+  become: true
+
+  vars_files:
+    - group_vars/all/vault.yml
+
+
+
+  tasks:
+
+    # - name: Include vars of stuff.yaml into the 'stuff' variable (2.2).
+    #   ansible.builtin.include_vars:
+    #     file: group_vars/all/vault
+    #     name: stuff
+
+    - name: Debug stuff
+      debug:
+        msg: Password no vault = "{{ password }}"

@@ -1,0 +1,20 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    
+    - block:
+      
+      - debug: msg="You will see a failed tasks right after this"
+
+      - name: Returns 1
+        command: /usr/bin/false
+    
+      - debug: msg="You never see this message"
+
+      rescue:
+        - debug: msg="You see this message in case of failure in the block"
+
+
+      always:
+        - debug: msg="This will be always executed"
