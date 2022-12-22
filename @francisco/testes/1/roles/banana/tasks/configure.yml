@@ -1,0 +1,6 @@
+---
+# tasks file for banana
+
+- name: Debug banana configure
+  debug:
+    msg: "Debug banana configure role"

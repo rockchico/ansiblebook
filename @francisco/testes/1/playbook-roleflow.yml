@@ -1,0 +1,26 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    
+    - name: Install nginx
+      ansible.builtin.apt:
+        name:
+          - nginx
+        state: present
+        update_cache: yes
+
+    - name: Install php
+      include_role:
+        name: banana
+        tasks_from: install
+
+    - name: Configure nginx
+      template:
+        src: message.j2
+        dest: /tmp/message
+
+    - name: Configure php
+      include_role:
+        name: banana
+        tasks_from: configure
