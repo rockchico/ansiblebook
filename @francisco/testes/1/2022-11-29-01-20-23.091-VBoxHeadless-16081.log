@@ -1,0 +1,12 @@
+Log created: 2022-11-29T01:20:23.910346000Z
+Process ID:  16081 (0x3ed1)
+Parent PID:  1 (0x1)
+Executable:  /usr/lib/virtualbox/VBoxHeadless
+Arg[0]: /usr/lib/virtualbox/VBoxHeadless
+Arg[1]: --comment
+Arg[2]: 1_default_1669634207457_22354
+Arg[3]: --startvm
+Arg[4]: ee6514fa-c7a6-46f1-a314-f007f43a6e3c
+Arg[5]: --vrde
+Arg[6]: config
+AddRef: illegal refcnt=3221225469 state=2

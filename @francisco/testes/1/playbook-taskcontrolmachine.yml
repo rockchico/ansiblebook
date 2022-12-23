@@ -14,3 +14,23 @@
         dest: "~/Downloads/goss"
         mode: '0755'
       ignore_errors: true
+
+
+    - name: Escreve na máquina de controle o arquivo com nome do host
+      delegate_to: localhost
+      connection: local
+      become: false
+      ansible.builtin.file:
+        path: "/tmp/{{ ansible_hostname }}.conf"
+        state: touch
+        mode: u=rw,g=r,o=r
+      ignore_errors: true
+
+    - name: Escreve na máquina de controle o arquivo com nome do host
+      delegate_to: host02
+      become: false
+      ansible.builtin.file:
+        path: "/tmp/{{ ansible_hostname }}-teste.conf"
+        state: touch
+        mode: u=rw,g=r,o=r
+      ignore_errors: true

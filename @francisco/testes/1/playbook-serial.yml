@@ -1,0 +1,15 @@
+
+---
+- hosts: all
+  become: true
+  #serial: 1 # diz para o Ansible executar somente em um host por vez
+
+  tasks:
+
+    - name: Say hy 
+      debug:
+        msg: "Hi {{ ansible_hostname }}"
+
+    - name: Returns 1
+      command: /usr/bin/false
+      

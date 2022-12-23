@@ -1,7 +1,8 @@
 # Homologação e testes máquina local francisco
 [homolog]
-cobaia  ansible_host=192.168.60.20  ansible_port=22
+host01  ansible_host=192.168.56.103  ansible_port=22 ansible_ssh_private_key_file=/home/francisco/Documentos/FRANCISCO-LABS/ANSIBLE/ansiblebook/@francisco/testes/1/.vagrant/machines/host01/virtualbox/private_key
+host02  ansible_host=192.168.56.104  ansible_port=22 ansible_ssh_private_key_file=/home/francisco/Documentos/FRANCISCO-LABS/ANSIBLE/ansiblebook/@francisco/testes/1/.vagrant/machines/host02/virtualbox/private_key
 
 [homolog:vars]
 ansible_user=vagrant
-ansible_ssh_private_key_file=/home/francisco/Documentos/FRANCISCO-LABS/ANSIBLE/ansiblebook/@francisco/testes/1/.vagrant/machines/default/virtualbox/private_key
+
