@@ -1,0 +1,30 @@
+---
+- hosts: all
+  become: true
+    
+
+  handlers:
+    - name: Print message
+      command: echo handler executed
+
+  pre_tasks:
+    - name: Echo pre tasks
+      command: echo pre tasks
+      notify: Print message
+
+  tasks:
+    - name: Echo tasks
+      command: echo tasks
+      notify: Print message
+
+    - name: Run handler at this point
+      meta: flush_handlers
+
+    - name: Echo tasks 2
+      command: echo tasks
+      notify: Print message
+
+  post_tasks:
+    - name: Post tasks
+      command: echo post tasks
+      notify: Print message

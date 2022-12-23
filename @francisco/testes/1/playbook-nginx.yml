@@ -1,0 +1,28 @@
+- hosts: all
+  become: true
+  tasks:
+
+    - name: ensure nginx is at the latest version
+      apt: 
+        name: nginx 
+        state: latest
+        update_cache: true
+
+    - name: start nginx
+      service:
+        name: nginx
+        state: started
+
+
+    # testa o acesso ao servidor nginx, requisição a partir da máquina de controle
+    - name: "Test it! http://{{ ansible_all_ipv4_addresses[1] }}/"
+      delegate_to: localhost
+      become: false
+      uri:
+        url: 'http://{{ ansible_all_ipv4_addresses[1] }}/'
+        validate_certs: false
+        return_content: true
+      register: this
+      failed_when: "'Thank you for using nginx' not in this.content"
+      tags:
+        - test 

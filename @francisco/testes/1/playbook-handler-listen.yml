@@ -1,0 +1,40 @@
+---
+- hosts: all
+  become: true
+    
+
+  handlers:
+    - name: Mensagem Weiss
+      debug:
+        msg: "Opa, weiss!"
+      listen: "manda cerveja weiss"
+      
+
+    - name: Mensagem Red
+      debug:
+        msg: "Opa, red!"
+      listen: "manda cerveja red"
+
+    - name: Mensagem Pilsen
+      debug:
+        msg: "Opa, pilsen!"
+      listen: "manda cerveja pilsen"
+
+  pre_tasks:
+    - name: Echo pre tasks 1
+      shell: /bin/true
+      notify: "manda cerveja weiss"
+
+  tasks:
+    - name: Echo tasks 1
+      shell: /bin/true
+      notify: "manda cerveja pilsen"
+
+    - name: Echo tasks 2
+      shell: /bin/true
+      notify: "manda cerveja red"
+
+  post_tasks:
+    - name: Echo pre post-tasks 1
+      shell: /bin/true
+      notify: "manda cerveja weiss"
